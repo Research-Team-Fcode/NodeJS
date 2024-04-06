@@ -13,6 +13,8 @@
   *#title* 
 ])
 
+#pagebreak()
+
 = Definition
 - *Node.js* is an open-source server environment, server-side JavaScript runtime environment. It allows developers to run JavaScript code outside of a web browser and on the server. 
 - *Node.js* runs the V8 JavaScript engine, the core of Google Chrome, outside of the browser. 
@@ -75,6 +77,8 @@ Node.js has a vibrant and active community that constantly contributes to its gr
 
 == Cross-platform Compatibility
 Node.js can run on various platforms, including Windows, macOS, and Linux, making it highly flexible and versatile.
+
+#pagebreak()
 
 = Functionality
 == File system:
@@ -176,6 +180,37 @@ Nodejs promise provides high-level APIs to add functions to be executed when eve
 - Communication between the main application and worker threads is facilitated by an event-based messaging system
 - Worker threads are most suitable for CPU-bound operations, consisting of image editing, video editing, cryptography, and complex mathematical operations,…
 - Example use cases of worker thread module:
+```js
+const {
+	Worker, isMainThread, parentPort, workerData,
+} = require('node:worker_threads');
+
+if (isMainThread) {
+	const data = {
+    	"editor.suggest.snippetsPreventQuickSuggestions": false,
+    	"editor.suggest.matchOnWordStartOnly": false,
+    	"editor.foldingImportsByDefault": true,
+    	"editor.inlineSuggest.enabled": true,
+    	"editor.suggest.localityBonus": true,
+    	"editor.suggestSelection": "first",
+    	"editor.accessibilitySupport": "off",
+    	"editor.stickyScroll.enabled": true,
+    	"editor.smoothScrolling": true,
+	}
+
+	const worker = new Worker(__filename, {
+    	workerData: data,
+	});
+	let result;
+	worker.on('message', (data) => {
+    	result = data;
+	})
+	worker.on('exit', () => console.log(result))
+} else {
+	const data = workerData;
+	parentPort.postMessage(JSON.stringify(data));
+}
+```
 
 == C/C++ addons
 === V8 Engine
@@ -197,6 +232,8 @@ Nodejs promise provides high-level APIs to add functions to be executed when eve
   - WASI is a modular system interface for WebAssembly. As described in the initial announcement, it’s focused on security and portability.
   - Source Code: _lib/wasi.js_
   - The WASI API provides an implementation of the WebAssembly System Interface specification. WASI gives WebAssembly applications access to the underlying operating system via a collection of POSIX-like functions.
+
+#pagebreak()
 
 = Comparison
 == Javascript/NodeJs vs Golang
