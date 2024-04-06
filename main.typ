@@ -9,7 +9,7 @@
   justify: true,
 )
 
-#align(center, text(32pt)[
+#align(center + horizon, text(size: 32pt, weight: 400)[
   *#title* 
 ])
 
