@@ -133,15 +133,15 @@ provides an inbuilt module called FS (File System).
 - Common use for the File System module:
     - The *fs.readFile()* method is used to read files
         ```js
-                    const fs = require('fs);
-                    fs.readFile('Fcode.html);
-                    ```
+        const fs = require('fs);
+        fs.readFile('Fcode.html);
+        ```
     - The *fs.appendFile()* method appends specified content to a file. If the file
         does not exist, the file will be created:
         ```js
-                    const fs = require('fs);
-                    fs.appendFile('Fcode.txt', 'Adding text to file');
-                    ```
+        const fs = require('fs);
+        fs.appendFile('Fcode.txt', 'Adding text to file');
+        ```
     - The *fs.appendFile()* method appends the specified content at the end of the
         specified file:
 
@@ -149,31 +149,31 @@ provides an inbuilt module called FS (File System).
             specified file is opened for writing. If the file does not exist, an empty file
             is created:
             ```js
-                                  const fs = require('fs);
-                                  fs.open('Fcode.txt', 'w');
-                                  ```
+            const fs = require('fs);
+            fs.open('Fcode.txt', 'w');
+            ```
         - The *fs.writeFile()* method replaces the specified file and content if it
             exists. If the file does not exist, a new file, containing the specified
             content, will be created:
             ```js
-                                  const fs = require('fs);
-                                  fs.writeFile('Fcode.txt', 'Hello and smile');
-                                  ```
+            const fs = require('fs);
+            fs.writeFile('Fcode.txt', 'Hello and smile');
+            ```
         - The *fs.writeFile()* method replaces the specified file and content:
             ```js
-                                  const fs = require('fs);
-                                  fs.writeFile('Fcode.txt', 'Hello to my crew');
-                                  ```
+            const fs = require('fs);
+            fs.writeFile('Fcode.txt', 'Hello to my crew');
+            ```
         - The *fs.rename()* method renames the specified file:
             ```js
-                                  const fs = require('fs);
-                                  fs.rename('FIn4.txt', 'Fcode.txt');
-                                  ```
+            const fs = require('fs);
+            fs.rename('FIn4.txt', 'Fcode.txt');
+            ```
         - The *fs.unlink()* method deletes the specified file:
             ```js
-                                  const fs = require('fs);
-                                  fs.unlink('Membername.txt');
-                                  ```
+            const fs = require('fs);
+            fs.unlink('Membername.txt');
+            ```
 
 == Net, HTTP/HTTPS
 === HTTP _(Hypertext Transfer Protocol)_
