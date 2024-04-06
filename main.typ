@@ -12,6 +12,10 @@
 
 #pagebreak()
 
+#outline(indent: auto)
+
+#pagebreak()
+
 = Definition
 - *Node.js* is an open-source server environment, server-side JavaScript runtime
     environment. It allows developers to run JavaScript code outside of a web
