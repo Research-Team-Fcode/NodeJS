@@ -1,3 +1,5 @@
+#import "@preview/fletcher:0.4.3" as fletcher: diagram, node, edge
+
 #let title = [
     NodeJS
 ]
@@ -175,6 +177,8 @@ provides an inbuilt module called FS (File System).
             fs.unlink('Membername.txt');
             ```
 
+#pagebreak()
+
 == Net, HTTP/HTTPS
 === HTTP _(Hypertext Transfer Protocol)_
 - HTTP is like a language that your web browser and the website’s server use to
@@ -217,6 +221,8 @@ provides an inbuilt module called FS (File System).
     - HTTP: No protection.
     - HTTPS: Guards against phishing.
 
+#pagebreak()
+
 == Promise, async, await
 === Event loop
 - Nodejs event loop is a semi-infinite loop, polling and blocking on the OS until
@@ -227,12 +233,32 @@ provides an inbuilt module called FS (File System).
     - Pollable file descriptors: can be directly waited on, including sockets (net,
         dgram, http, https, tls, child process pipes, stdin, stdout, stderr)
     - Time: the next timeout can be directly waited on
-    - Others:
-        - Including fs.\*, dns.lookup(), crypto.randomBytes(), cryto.pbkdf2(), …
-        - Using uv thread pool. The blocking call is made by a thread, and when it
-            completes, readiness is signaled back to the event loop using either and eventfd
-            or a self-pipe (self-pipe is a pipe, where one end is written to by a thread or
-            signal handler, and the other end is polled in the loop)
+    - Others: using uv thread pool to facilitate polling
+#figure(
+    caption: "Event loop diagram",
+)[
+    #diagram(
+        node-defocus: 0, spacing: (1cm, 1.5cm), edge-stroke: 1pt, crossing-thickness: 5, mark-scale: 70%, node-fill: luma(97%), node-outset: 3pt, {
+            let blob(pos, label, tint: white, ..args) = node(
+                pos, align(center, label), fill: tint.lighten(60%), stroke: 1pt + tint.darken(20%), ..args,
+            )
+            blob((0, 0), "timers")
+            blob((0, 1), "pending callbacks")
+            blob((0, 2), "idle, repair")
+            blob((0, 3), "poll")
+            blob((1, 3), "incoming: \n connections, data, ...")
+            blob((0, 4), "check")
+            blob((0, 5), "close callbacks")
+        }, {
+            edge((0, 0), (0, 1), "-|>")
+            edge((0, 1), (0, 2), "-|>")
+            edge((0, 2), (0, 3), "-|>")
+            edge((0, 3), (0, 4), "-|>")
+            edge((1, 3), (0, 3), "-|>")
+            edge((0, 4), (0, 5), "-|>")
+        },
+    )
+]
 
 === Promise
 Nodejs promise provides high-level APIs to add functions to be executed when
@@ -245,6 +271,8 @@ events occur in the event loop
     avoiding the need to configure promise chains explicitly.
 - Async, await enables the use of ordinary try/catch blocks around asynchronous
     code instead of .catch in promise chains
+
+#pagebreak()
 
 == Worker threads
 - The worker thread module implements a form of threading that provides
@@ -288,6 +316,8 @@ if (isMainThread) {
 }
 ```
 
+#pagebreak()
+
 == C/C++ addons
 === V8 Engine
 - V8 is Google’s open-source high-performance JavaScript and WebAssembly engine,
@@ -306,6 +336,8 @@ if (isMainThread) {
     interface between JavaScript and C/C++ libraries.
 - There are three options for implementing addons: Node-API, nan, or direct use of
     internal V8, libuv, and Node.js libraries.
+
+#pagebreak()
 
 == WASI
 - WebAssembly _(abbreviated Wasm)_ is a binary instruction format for a
